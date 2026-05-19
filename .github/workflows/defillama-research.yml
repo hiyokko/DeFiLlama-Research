@@ -21,6 +21,9 @@ on:
 permissions:
   contents: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
   notify:
     runs-on: ubuntu-latest
@@ -48,7 +51,7 @@ jobs:
           fi
 
           if [ -z "$OPENAI_API_KEY" ]; then
-            echo "::warning::OPENAI_API_KEY is not set. The notification will use a non-AI fallback summary."
+            echo "OPENAI_API_KEY is not set. The notification will use a non-AI fallback summary."
           else
             echo "OPENAI_API_KEY is set"
           fi
