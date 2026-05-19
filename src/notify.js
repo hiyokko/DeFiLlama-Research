@@ -231,9 +231,9 @@ function fallbackJapaneseSummary(article) {
     .slice(0, 700);
 
   return [
-    "OPENAI_API_KEY が未設定のため、日本語要約は簡易抽出です。",
-    `主題: ${article.title}`,
-    `本文冒頭: ${lead}`,
+    "AI要約キー未設定のため、簡易通知として送信します。",
+    `記事テーマ: ${article.title}`,
+    `本文冒頭の抜粋: ${lead}`,
   ].join("\n");
 }
 

@@ -16,7 +16,10 @@ Discord notifier for new DL Research articles.
 Add these repository secrets:
 
 - `DISCORD_WEBHOOK_URL`
-- `OPENAI_API_KEY`
+
+Optional repository secret:
+
+- `OPENAI_API_KEY` enables AI-generated Japanese summaries. When unset, the workflow still sends a simple Japanese notification with an article excerpt.
 
 Optional repository variable:
 

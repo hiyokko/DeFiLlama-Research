@@ -48,8 +48,7 @@ jobs:
           fi
 
           if [ -z "$OPENAI_API_KEY" ]; then
-            echo "::error::Missing repository secret OPENAI_API_KEY"
-            missing=1
+            echo "::warning::OPENAI_API_KEY is not set. The notification will use a non-AI fallback summary."
           else
             echo "OPENAI_API_KEY is set"
           fi
@@ -72,7 +71,7 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
-          REQUIRE_OPENAI: "true"
+          REQUIRE_OPENAI: "false"
           SEED_ON_FIRST_RUN: "true"
 
       - name: Commit notifier state
