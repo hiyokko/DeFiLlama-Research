@@ -1,0 +1,13 @@
+{
+  "name": "defillama-research",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "notify": "node src/notify.js",
+    "dry-run": "node src/notify.js --dry-run --force-latest 1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
