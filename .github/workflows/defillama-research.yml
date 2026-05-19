@@ -5,6 +5,18 @@ on:
     # 10:00 JST daily
     - cron: "0 1 * * *"
   workflow_dispatch:
+    inputs:
+      force_latest:
+        description: "Send latest N articles even if already seen"
+        required: false
+        default: "0"
+        type: choice
+        options:
+          - "0"
+          - "1"
+          - "2"
+          - "3"
+          - "5"
 
 permissions:
   contents: write
@@ -24,8 +36,14 @@ jobs:
           node-version: "22"
 
       - name: Send Discord notification
-        run: npm run notify
+        run: |
+          if [ "${FORCE_LATEST:-0}" != "0" ]; then
+            npm run notify -- --force-latest "$FORCE_LATEST"
+          else
+            npm run notify
+          fi
         env:
+          FORCE_LATEST: ${{ github.event.inputs.force_latest || '0' }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}

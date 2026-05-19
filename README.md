@@ -23,6 +23,7 @@ Optional repository variable:
 - `OPENAI_MODEL` defaults to `gpt-4.1-mini` when unset.
 
 The workflow runs daily at 10:00 JST and can also be started manually from GitHub Actions.
+When manually testing, set `force_latest` to `1` to send the latest article even if it is already marked as seen.
 
 ## Local test
 
