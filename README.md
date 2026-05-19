@@ -4,7 +4,7 @@ Discord notifier for new DL Research articles.
 
 ## What it does
 
-- Checks the DL Research article list once per hour.
+- Checks the DL Research article list once per day at 10:00 JST.
 - Finds articles that have not been seen before.
 - Summarizes each new article in Japanese with the OpenAI API.
 - Sends the summary and article link to Discord through a webhook.
@@ -22,7 +22,7 @@ Optional repository variable:
 
 - `OPENAI_MODEL` defaults to `gpt-4.1-mini` when unset.
 
-The workflow runs hourly and can also be started manually from GitHub Actions.
+The workflow runs daily at 10:00 JST and can also be started manually from GitHub Actions.
 
 ## Local test
 

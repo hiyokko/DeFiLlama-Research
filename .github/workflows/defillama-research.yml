@@ -2,7 +2,8 @@ name: DeFiLlama Research Discord notifier
 
 on:
   schedule:
-    - cron: "7 * * * *"
+    # 10:00 JST daily
+    - cron: "0 1 * * *"
   workflow_dispatch:
 
 permissions:
