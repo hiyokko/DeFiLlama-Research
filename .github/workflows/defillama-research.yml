@@ -35,6 +35,31 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Validate configuration
+        run: |
+          missing=0
+          echo "force_latest=${FORCE_LATEST:-0}"
+
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "::error::Missing repository secret DISCORD_WEBHOOK_URL"
+            missing=1
+          else
+            echo "DISCORD_WEBHOOK_URL is set"
+          fi
+
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "::error::Missing repository secret OPENAI_API_KEY"
+            missing=1
+          else
+            echo "OPENAI_API_KEY is set"
+          fi
+
+          exit "$missing"
+        env:
+          FORCE_LATEST: ${{ github.event.inputs.force_latest || '0' }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
       - name: Send Discord notification
         run: |
           if [ "${FORCE_LATEST:-0}" != "0" ]; then
