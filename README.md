@@ -19,7 +19,7 @@ Add these repository secrets:
 
 Optional repository secret:
 
-- `OPENAI_API_KEY` enables AI-generated Japanese summaries. When unset, the workflow still sends a simple Japanese notification with an article excerpt.
+- `OPENAI_API_KEY` enables AI-generated Japanese summaries. When unset, the workflow still sends a deterministic Japanese overview with topic bullets and notable figures.
 
 Optional repository variable:
 
