@@ -358,14 +358,16 @@ function fallbackJapaneseSummary(article) {
     .filter(Boolean)
     .slice(0, 3);
   const translatedLead = sentences.map(translateCommonResearchSentence).filter(Boolean);
+  const detailLines = buildFallbackDetails(article.title, article.text);
   const highlights = extractNumericHighlights(article.text);
   const lines = [
     "概要",
     `- ${buildFallbackTopic(article.title, article.text)}`,
   ];
 
-  for (const sentence of translatedLead.slice(0, 2)) {
-    lines.push(`- ${sentence}`);
+  for (const line of [...detailLines, ...translatedLead]) {
+    if (lines.length >= 5) break;
+    pushUniqueSummaryLine(lines, line);
   }
 
   if (highlights.length > 0) {
@@ -379,6 +381,18 @@ function buildFallbackTopic(title, text) {
   const lowerTitle = title.toLowerCase();
   const lowerText = text.toLowerCase();
 
+  if (lowerTitle.includes("ai discovery layer") || lowerTitle.includes("llms")) {
+    return "LLMやAI検索が、暗号資産取引所の発見・比較・信頼形成に与える影響を扱っています。";
+  }
+  if (lowerTitle.includes("sentora prime") || lowerTitle.includes("vault curation")) {
+    return "RWAボールトのキュレーション、リスク管理、機関投資家向け運用基盤の進展を扱っています。";
+  }
+  if (lowerTitle.includes("parallel universes")) {
+    return "暗号資産が既存金融に組み込まれる流れと、独自インフラを作る流れの二極化を論じています。";
+  }
+  if (lowerTitle.includes("ekiden")) {
+    return "Ekidenの創業者インタビューを通じて、オンチェーンデリバティブを機関投資家向けにする条件を掘り下げています。";
+  }
   if (lowerTitle.includes("state of rwafi")) {
     return "RWAfiの市場動向、主要カテゴリ、オンチェーン化の進展を整理したレポートです。";
   }
@@ -411,6 +425,70 @@ function buildFallbackTopic(title, text) {
   }
 
   return `${title} に関するDefiLlama Researchの新着記事です。`;
+}
+
+function buildFallbackDetails(title, text) {
+  const lowerTitle = title.toLowerCase();
+  const lowerText = text.toLowerCase();
+
+  if (lowerTitle.includes("ai discovery layer") || lowerTitle.includes("llms")) {
+    return [
+      "従来のSEOだけでなく、AI回答の中でどの取引所名が提示されるかが重要になりつつあります。",
+      "手数料、流動性、規制対応、ブランド信頼などが、AIによる比較・推薦の材料になる点を整理しています。",
+    ];
+  }
+  if (lowerTitle.includes("sentora prime") || lowerTitle.includes("vault curation")) {
+    return [
+      "RWAボールトでは利回りだけでなく、担保、流動性、リスク開示、運用者の選別が重要になります。",
+      "Sentora PRIMEを例に、オンチェーン資産運用をより制度金融に近い形へ寄せる動きを見ています。",
+    ];
+  }
+  if (lowerTitle.includes("parallel universes")) {
+    return [
+      "一方ではステーブルコインや決済網が既存金融の裏側に組み込まれ、実用性が前面に出ています。",
+      "もう一方ではプライバシー、暗号計算、分散ストレージ、AIエージェントなど新しい基盤作りが進んでいます。",
+    ];
+  }
+  if (lowerTitle.includes("ekiden")) {
+    return [
+      "オンチェーンデリバティブを機関投資家が使うには、清算、リスク管理、流動性、コンプライアンスの整備が鍵になります。",
+      "プロダクトの使いやすさだけでなく、既存金融の運用基準に耐える市場構造が論点になっています。",
+    ];
+  }
+  if (lowerText.includes("stablecoin")) {
+    return [
+      "ステーブルコインが決済、送金、金融機関のバックエンドでどう使われるかが中心テーマです。",
+    ];
+  }
+  if (lowerText.includes("tokenized") || lowerText.includes("tokenisation") || lowerText.includes("tokenization")) {
+    return [
+      "伝統的な資産をオンチェーン化する際の流動性、コンプライアンス、投資家アクセスが主な論点です。",
+    ];
+  }
+  if (lowerText.includes("privacy") || lowerText.includes("encrypted") || lowerText.includes("confidential")) {
+    return [
+      "透明性だけでは扱いづらい金融データや個人情報を、暗号技術でどう保護するかを扱っています。",
+    ];
+  }
+  if (lowerText.includes("institutional")) {
+    return [
+      "機関投資家が利用するうえで必要な運用体制、規制対応、リスク管理の不足や改善点を整理しています。",
+    ];
+  }
+  if (lowerText.includes("liquidity")) {
+    return [
+      "流動性をどこに集め、どのようなインセンティブで維持するかがプロトコル設計上の焦点です。",
+    ];
+  }
+
+  return [];
+}
+
+function pushUniqueSummaryLine(lines, line) {
+  if (!line) return;
+  const bullet = `- ${line}`;
+  if (lines.includes(bullet)) return;
+  lines.push(bullet);
 }
 
 function translateCommonResearchSentence(sentence) {
