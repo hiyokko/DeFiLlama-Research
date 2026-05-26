@@ -1,15 +1,15 @@
 # DeFiLlama Research
 
-Discord notifier for new DL Research articles.
+Discord notifier for new DefiLlama Research articles.
 
 ## What it does
 
-- Checks the DL Research article list once per day at 10:00 JST.
+- Checks the DefiLlama Research article list once per day at 10:00 JST.
 - Finds articles that have not been seen before.
 - Summarizes each new article in Japanese with the OpenAI API.
 - Sends the summary and article link to Discord through a webhook.
 
-`defillama.com/research` is protected by Cloudflare in non-browser environments, so the notifier fetches the same DL Research article feed from `https://www.dlnews.com/research/`.
+`defillama.com/research` is protected by Cloudflare in non-browser environments, so the notifier fetches a text-rendered copy of the same DefiLlama Research pages through Jina Reader.
 
 ## GitHub setup
 

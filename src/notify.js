@@ -3,9 +3,11 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
-const DEFAULT_SOURCE_URL = "https://www.dlnews.com/research/";
+const READER_PREFIX = "https://r.jina.ai/http://r.jina.ai/http://";
+const DEFAULT_SOURCE_URL = `${READER_PREFIX}https://defillama.com/research`;
 const DEFAULT_STATE_PATH = ".data/seen.json";
 const DISCORD_EMBED_LIMIT = 10;
+const DETAIL_PREFETCH_LIMIT = 15;
 
 loadDotEnv();
 
@@ -58,16 +60,38 @@ async function main() {
     return;
   }
 
-  const selected = candidates.slice(0, config.maxArticles);
-  const detailedArticles = [];
+  const detailCandidates =
+    config.forceLatest > 0 ? candidates.slice(0, config.maxArticles) : candidates.slice(0, DETAIL_PREFETCH_LIMIT);
+  const detailedArticles = await Promise.all(
+    detailCandidates.map(async (article) => ({ ...article, ...(await fetchArticleDetail(article)) })),
+  );
 
-  for (const article of selected) {
-    const detail = await fetchArticleDetail(article);
-    const summary = await summarizeJapanese(detail);
-    detailedArticles.push({ ...article, ...detail, summary });
+  let selected = detailedArticles;
+  if (config.forceLatest === 0 && state.updatedAt) {
+    const stateUpdatedAt = Date.parse(state.updatedAt) || 0;
+    if (stateUpdatedAt > 0) {
+      selected = selected.filter((article) => {
+        const publishedAt = Date.parse(article.publishedAt) || 0;
+        return publishedAt === 0 || publishedAt > stateUpdatedAt - 60 * 60 * 1000;
+      });
+    }
   }
 
-  await sendDiscord(detailedArticles);
+  selected = sortArticles(selected).slice(0, config.maxArticles);
+
+  if (selected.length === 0) {
+    console.log("No new research articles found.");
+    if (!config.dryRun) {
+      await writeState(config.statePath, articles);
+    }
+    return;
+  }
+
+  for (const article of selected) {
+    article.summary = await summarizeJapanese(article);
+  }
+
+  await sendDiscord(selected);
 
   if (!config.dryRun) {
     await writeState(config.statePath, articles);
@@ -100,6 +124,77 @@ async function fetchText(url) {
 
 function extractResearchArticles(html) {
   const readable = normalizeSerializedHtml(html);
+  const defillamaArticles = extractDefillamaArticles(readable);
+  if (defillamaArticles.length > 0) {
+    return defillamaArticles;
+  }
+
+  return extractDlnewsArticles(readable);
+}
+
+function extractDefillamaArticles(readable) {
+  const latestStart = readable.indexOf("Latest from DefiLlama Research");
+  const scopedReadable = latestStart === -1 ? readable : readable.slice(latestStart);
+  const urlPattern =
+    /https?:\/\/(?:www\.)?defillama\.com\/research\/(?:report|spotlight|interview|opinion|roundtables)\/[a-z0-9-]+\/?/gi;
+  const bySlug = new Map();
+  let match;
+
+  while ((match = urlPattern.exec(scopedReadable)) !== null) {
+    const url = canonicalizeUrl(match[0]);
+    const slug = extractSlug(url);
+    if (!slug || bySlug.has(slug)) continue;
+
+    const nearby = scopedReadable.slice(Math.max(0, match.index - 700), match.index + 200);
+    bySlug.set(slug, {
+      index: bySlug.size,
+      slug,
+      title: extractDefillamaTitle(nearby, slug),
+      url,
+      publishedAt: extractReadableDate(nearby),
+    });
+  }
+
+  return [...bySlug.values()];
+}
+
+function extractDefillamaTitle(text, slug) {
+  const linkStart = Math.max(text.lastIndexOf("[!["), text.lastIndexOf("["));
+  const rawLabel = linkStart === -1 ? "" : text.slice(linkStart + 1);
+  const title = cleanMarkdownLabel(rawLabel);
+  return title || titleFromSlug(slug);
+}
+
+function cleanMarkdownLabel(label) {
+  const withoutImages = label
+    .replace(/!\[[^\]]*]\([^)]+\)/g, " ")
+    .replace(/\]\([^)]+\)/g, " ")
+    .replace(/Image\s+\d+:\s*/gi, " ")
+    .replace(/\b(?:INTERVIEW|SPOTLIGHT|ROUNDTABLES|REPORT|OPINION)\b/g, " ")
+    .replace(/\b\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{4}\b/gi, " ");
+  const title = cleanText(withoutImages);
+  if (title.length < 8 || title.startsWith("http")) return "";
+  return title;
+}
+
+function extractReadableDate(text) {
+  const matches = [...text.matchAll(/\b\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{4}\b/gi)];
+  return matches.length > 0 ? matches.at(-1)[0] : "";
+}
+
+function titleFromSlug(slug) {
+  return slug
+    .split("-")
+    .map((part) => {
+      if (/^(ai|ceo|dex|rwa|rwafi|zk|fhe|mpc|btcfi|tvl|l1|l2)$/i.test(part)) {
+        return part.toUpperCase();
+      }
+      return `${part.charAt(0).toUpperCase()}${part.slice(1)}`;
+    })
+    .join(" ");
+}
+
+function extractDlnewsArticles(readable) {
   const urlPattern = /https:\/\/www\.dlnews\.com\/research\/internal\/[a-z0-9-]+\/?/gi;
   const bySlug = new Map();
   let match;
@@ -147,7 +242,12 @@ function extractResearchArticles(html) {
 }
 
 async function fetchArticleDetail(article) {
-  const html = await fetchText(article.url);
+  const html = await fetchText(article.url.includes("defillama.com") ? readerUrl(article.url) : article.url);
+  const readerDetail = extractReaderArticleDetail(html, article);
+  if (readerDetail.text) {
+    return readerDetail;
+  }
+
   const title = cleanText(extractFirst(html, /<h1[^>]*>([\s\S]*?)<\/h1>/) || article.title);
   const paragraphs = [...html.matchAll(/<p[^>]*class="[^"]*cs-article-text-type-element[^"]*"[^>]*>([\s\S]*?)<\/p>/g)]
     .map((match) => cleanText(match[1]))
@@ -161,8 +261,36 @@ async function fetchArticleDetail(article) {
   return {
     title,
     imageUrl,
+    publishedAt: article.publishedAt,
     text: paragraphs.join("\n\n"),
   };
+}
+
+function extractReaderArticleDetail(text, article) {
+  if (!text.includes("Markdown Content:")) {
+    return { title: article.title, imageUrl: "", publishedAt: article.publishedAt, text: "" };
+  }
+
+  const markdown = text.slice(text.indexOf("Markdown Content:") + "Markdown Content:".length);
+  return {
+    title: cleanText(extractFirst(text, /^Title:\s*(.+)$/m) || article.title),
+    imageUrl: extractFirst(markdown, /!\[[^\]]*]\((https?:\/\/[^)]+)\)/) || "",
+    publishedAt: extractFirst(text, /^Published Time:\s*(.+)$/m) || article.publishedAt,
+    text: markdownToPlainText(markdown),
+  };
+}
+
+function markdownToPlainText(markdown) {
+  return markdown
+    .replace(/!\[[^\]]*]\([^)]+\)/g, " ")
+    .replace(/\[([^\]]+)]\([^)]+\)/g, "$1")
+    .replace(/^#+\s*/gm, "")
+    .replace(/^>\s*/gm, "")
+    .replace(/\*\*/g, "")
+    .split(/\n{2,}/)
+    .map((paragraph) => cleanText(paragraph))
+    .filter(Boolean)
+    .join("\n\n");
 }
 
 async function summarizeJapanese(article) {
@@ -282,7 +410,7 @@ function buildFallbackTopic(title, text) {
     return "流動性の配分、インセンティブ、プロトコル設計の変化を解説しています。";
   }
 
-  return `${title} に関するDL Researchの新着記事です。`;
+  return `${title} に関するDefiLlama Researchの新着記事です。`;
 }
 
 function translateCommonResearchSentence(sentence) {
@@ -366,7 +494,7 @@ async function sendDiscord(articles) {
       : [],
     image: article.imageUrl ? { url: article.imageUrl } : undefined,
     footer: {
-      text: "Source: DL Research",
+      text: "Source: DefiLlama Research",
     },
   }));
 
@@ -400,6 +528,14 @@ async function sendDiscord(articles) {
 function selectNewArticles(articles, state) {
   const seen = new Set(state.seenSlugs || []);
   return articles.filter((article) => !seen.has(article.slug));
+}
+
+function sortArticles(articles) {
+  return [...articles].sort((a, b) => {
+    const aTime = Date.parse(a.publishedAt) || 0;
+    const bTime = Date.parse(b.publishedAt) || 0;
+    return bTime - aTime || (a.index || 0) - (b.index || 0);
+  });
 }
 
 async function readState(statePath) {
@@ -454,11 +590,18 @@ function decodeHtml(value) {
 }
 
 function canonicalizeUrl(url) {
-  return `${url.replace(/\/+$/, "")}/`;
+  return `${url.replace(/^http:\/\/defillama\.com/i, "https://defillama.com").replace(/\/+$/, "")}/`;
 }
 
 function extractSlug(url) {
-  return extractFirst(url, /\/research\/internal\/([^/]+)\/?$/);
+  return (
+    extractFirst(url, /\/research\/(?:report|spotlight|interview|opinion|roundtables)\/([^/?#]+)\/?$/) ||
+    extractFirst(url, /\/research\/internal\/([^/]+)\/?$/)
+  );
+}
+
+function readerUrl(url) {
+  return url.startsWith(READER_PREFIX) ? url : `${READER_PREFIX}${url}`;
 }
 
 function extractFirst(text, pattern) {
