@@ -371,7 +371,7 @@ function fallbackJapaneseSummary(article) {
   }
 
   if (highlights.length > 0) {
-    lines.push(`- 注目データ: ${highlights.slice(0, 4).join(" / ")}`);
+    lines.push(`- 本文中の主な数値: ${highlights.slice(0, 4).join(" / ")}`);
   }
 
   return lines.join("\n");
@@ -532,15 +532,26 @@ function translateCommonResearchSentence(sentence) {
 }
 
 function extractNumericHighlights(text) {
-  const matches = [
-    ...text.matchAll(/\$?\d+(?:\.\d+)?\s?(?:billion|million|trillion)/gi),
-    ...text.matchAll(/\d+(?:\.\d+)?%/g),
-    ...text.matchAll(/\$?\d+(?:\.\d+)?[BMKT]\b/g),
-    ...text.matchAll(/\d+(?:,\d{3})+(?:\.\d+)?/g),
-  ].map((match) => match[0]);
+  const patterns = [
+    /\$?\d+(?:\.\d+)?\s?(?:billion|million|trillion)/gi,
+    /\d+(?:\.\d+)?%/g,
+    /\$?\d+(?:\.\d+)?[BMKT]\b/g,
+    /\d+(?:,\d{3})+(?:\.\d+)?/g,
+  ];
+  const matches = patterns.flatMap((pattern) =>
+    [...text.matchAll(pattern)]
+      .filter((match) => isStandaloneNumericHighlight(text, match.index, match[0]))
+      .map((match) => match[0]),
+  );
   if (matches.length === 0) return [];
 
   return [...new Set(matches.map((match) => match.trim()))];
+}
+
+function isStandaloneNumericHighlight(text, index, value) {
+  const previous = index > 0 ? text[index - 1] : "";
+  const next = text[index + value.length] || "";
+  return !/[A-Za-z0-9]/.test(previous) && !/[A-Za-z0-9]/.test(next);
 }
 
 function extractOpenAiText(payload) {
