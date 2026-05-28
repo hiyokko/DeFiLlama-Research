@@ -352,14 +352,10 @@ async function summarizeJapanese(article) {
 }
 
 function fallbackJapaneseSummary(article) {
-  const sentences = article.text
-    .split(/(?<=[.!?])\s+/)
-    .map((sentence) => cleanText(sentence))
-    .filter(Boolean)
-    .slice(0, 3);
+  const sentences = getCleanSentences(article.text).slice(0, 6);
   const translatedLead = sentences.map(translateCommonResearchSentence).filter(Boolean);
   const detailLines = buildFallbackDetails(article.title, article.text);
-  const highlights = extractNumericHighlights(article.text);
+  const numericInsights = buildNumericInsightLines(article.title, article.text);
   const lines = [
     "概要",
     `- ${buildFallbackTopic(article.title, article.text)}`,
@@ -370,8 +366,9 @@ function fallbackJapaneseSummary(article) {
     pushUniqueSummaryLine(lines, line);
   }
 
-  if (highlights.length > 0) {
-    lines.push(`- 本文中の主な数値: ${highlights.slice(0, 4).join(" / ")}`);
+  for (const line of numericInsights) {
+    if (lines.length >= 5) break;
+    pushUniqueSummaryLine(lines, line);
   }
 
   return lines.join("\n");
@@ -393,6 +390,15 @@ function buildFallbackTopic(title, text) {
   if (lowerTitle.includes("ekiden")) {
     return "Ekidenの創業者インタビューを通じて、オンチェーンデリバティブを機関投資家向けにする条件を掘り下げています。";
   }
+  if (lowerTitle.includes("communication problem") || lowerText.includes("communication as part of the adoption infrastructure")) {
+    return "機関投資家向けDeFiでは、技術力だけでなく、リスク・法務・調達など複数部署が同じ理解に到達できる説明設計が導入の壁になると論じています。";
+  }
+  if (
+    lowerTitle.includes("private web") ||
+    (lowerTitle.includes("zk") && lowerTitle.includes("fhe") && lowerTitle.includes("mpc"))
+  ) {
+    return "ZK、FHE、MPCを使い、オンチェーンの透明性と金融・個人データの秘匿性をどう両立するかを議論しています。";
+  }
   if (lowerTitle.includes("state of rwafi")) {
     return "RWAfiの市場動向、主要カテゴリ、オンチェーン化の進展を整理したレポートです。";
   }
@@ -412,7 +418,7 @@ function buildFallbackTopic(title, text) {
     return "新しいメインネットやプロダクト立ち上げの狙い、資金調達、エコシステム展開を扱っています。";
   }
   if (lowerTitle.includes("ceo on") || lowerTitle.includes("founder on")) {
-    return "プロジェクト関係者へのインタビューを通じて、事業戦略と市場課題を掘り下げています。";
+    return buildInterviewTopic(title, text);
   }
   if (lowerText.includes("tokenized") || lowerText.includes("tokenisation") || lowerText.includes("tokenization")) {
     return "資産のトークン化とオンチェーン金融インフラの進展を扱っています。";
@@ -431,6 +437,22 @@ function buildFallbackDetails(title, text) {
   const lowerTitle = title.toLowerCase();
   const lowerText = text.toLowerCase();
 
+  if (lowerTitle.includes("communication problem") || lowerText.includes("communication as part of the adoption infrastructure")) {
+    return [
+      "認知拡大よりも、投資家・提携先・社内審査担当が同じ説明を再現できることが重要だとしています。",
+      "創業者のLinkedInや専門メディアでの発信は、個人ブランディングではなく、商談前の信頼形成と理解づくりの手段として位置づけられています。",
+      "リスクを隠すのではなく、前提条件、監査、流動性、ガバナンスなどをどう管理するか説明する姿勢が機関投資家の信用につながるという内容です。",
+    ];
+  }
+  if (
+    lowerTitle.includes("private web") ||
+    (lowerTitle.includes("zk") && lowerTitle.includes("fhe") && lowerTitle.includes("mpc"))
+  ) {
+    return [
+      "ZKは検証、FHEやMPCは暗号化された状態での計算に強みがあり、用途ごとに役割が分かれる点を整理しています。",
+      "エージェントや金融アプリが広がるほど、戦略や残高を漏らさずに決済・検証できる基盤が重要になるという内容です。",
+    ];
+  }
   if (lowerTitle.includes("ai discovery layer") || lowerTitle.includes("llms")) {
     return [
       "従来のSEOだけでなく、AI回答の中でどの取引所名が提示されるかが重要になりつつあります。",
@@ -458,6 +480,7 @@ function buildFallbackDetails(title, text) {
   if (lowerText.includes("stablecoin")) {
     return [
       "ステーブルコインが決済、送金、金融機関のバックエンドでどう使われるかが中心テーマです。",
+      "発行体、利用者、規制当局の間で、収益配分や透明性をどう設計するかが論点になります。",
     ];
   }
   if (lowerText.includes("tokenized") || lowerText.includes("tokenisation") || lowerText.includes("tokenization")) {
@@ -484,11 +507,45 @@ function buildFallbackDetails(title, text) {
   return [];
 }
 
+function buildInterviewTopic(title, text) {
+  const subject = extractInterviewSubject(title);
+  const lowerTitle = title.toLowerCase();
+  const lowerText = text.toLowerCase();
+
+  if (lowerTitle.includes("stablecoin revenue")) {
+    return `${subject}へのインタビューで、ステーブルコイン収益を誰に還元するべきか、銀行・発行体・利用者の力学を掘り下げています。`;
+  }
+  if (lowerTitle.includes("institutional defi") || lowerText.includes("institutional adoption")) {
+    return `${subject}へのインタビューで、機関投資家がDeFiを評価・採用する際の実務上の障壁を掘り下げています。`;
+  }
+  if (lowerTitle.includes("onchain derivatives") || lowerText.includes("derivatives")) {
+    return `${subject}へのインタビューで、オンチェーンデリバティブを機関投資家向け市場に近づけるための条件を掘り下げています。`;
+  }
+  if (lowerText.includes("risk") && lowerText.includes("compliance")) {
+    return `${subject}へのインタビューで、規制対応、リスク管理、導入判断の課題を整理しています。`;
+  }
+
+  return `${subject}へのインタビューを通じて、事業戦略、市場課題、導入に必要な条件を整理しています。`;
+}
+
+function extractInterviewSubject(title) {
+  const match = title.match(/^(.+?)\s+(?:CEO|Founder|founder|Co-Founder|co-founder|CIO|COO|CMO|VP|Contributor|contributor|Research Engineer|Head of [^ ]+(?: [^ ]+){0,3})\s+on\b/);
+  if (!match) return "プロジェクト関係者";
+  return cleanText(match[1]).replace(/'s$/i, "");
+}
+
 function pushUniqueSummaryLine(lines, line) {
   if (!line) return;
   const bullet = `- ${line}`;
   if (lines.includes(bullet)) return;
   lines.push(bullet);
+}
+
+function getCleanSentences(text) {
+  return text
+    .split(/(?<=[.!?])\s+/)
+    .map((sentence) => cleanText(sentence))
+    .filter(Boolean);
 }
 
 function translateCommonResearchSentence(sentence) {
@@ -531,10 +588,60 @@ function translateCommonResearchSentence(sentence) {
   return "";
 }
 
+function buildNumericInsightLines(title, text) {
+  const sentences = getCleanSentences(`${title}. ${text}`);
+  const lines = [];
+
+  for (const sentence of sentences) {
+    const highlights = extractNumericHighlights(sentence);
+    if (highlights.length === 0) continue;
+
+    const line = describeNumericInsight(sentence, highlights);
+    if (line) pushUniquePlainLine(lines, line);
+  }
+
+  return lines.slice(0, 2);
+}
+
+function describeNumericInsight(sentence, highlights) {
+  const lower = sentence.toLowerCase();
+  const values = highlights.slice(0, 3).join(" / ");
+
+  if ((lower.includes("rwa") || lower.includes("real-world asset")) && /sector|market|surges?|past|above|exceed/.test(lower)) {
+    return `RWA関連市場の規模として ${values} が示されています。`;
+  }
+  if (lower.includes("total value locked") || /\btvl\b/i.test(sentence)) {
+    return `TVLの規模として ${values} が言及されています。`;
+  }
+  if (lower.includes("raised") || lower.includes("funding") || lower.includes("financing")) {
+    return `資金調達や投資規模として ${values} が言及されています。`;
+  }
+  if (lower.includes("deposit cap") || lower.includes("cap to")) {
+    return `預け入れ上限や利用枠として ${values} が示されています。`;
+  }
+  if (/\btps\b/i.test(sentence)) {
+    return `処理性能として ${values} が示されています。`;
+  }
+  if (lower.includes("volume") || lower.includes("transaction")) {
+    return `取引量や利用規模として ${values} が示されています。`;
+  }
+  if (lower.includes("treasury") || lower.includes("idle capital")) {
+    return `未活用資本やトレジャリー規模として ${values} が示されています。`;
+  }
+
+  return "";
+}
+
+function pushUniquePlainLine(lines, line) {
+  if (!line || lines.includes(line)) return;
+  lines.push(line);
+}
+
 function extractNumericHighlights(text) {
   const patterns = [
     /\$?\d+(?:\.\d+)?\s?(?:billion|million|trillion)/gi,
     /\d+(?:\.\d+)?%/g,
+    /\d+(?:,\d{3})?(?:\s?to\s?\d+(?:,\d{3})?)?\s?TPS\b/gi,
     /\$?\d+(?:\.\d+)?[BMKT]\b/g,
     /\d+(?:,\d{3})+(?:\.\d+)?/g,
   ];
@@ -545,7 +652,10 @@ function extractNumericHighlights(text) {
   );
   if (matches.length === 0) return [];
 
-  return [...new Set(matches.map((match) => match.trim()))];
+  const uniqueMatches = [...new Set(matches.map((match) => match.trim()))];
+  return uniqueMatches.filter(
+    (value) => !uniqueMatches.some((other) => other !== value && other.includes(value)),
+  );
 }
 
 function isStandaloneNumericHighlight(text, index, value) {
