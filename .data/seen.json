@@ -1,12 +1,13 @@
 {
-  "updatedAt": "2026-05-29T05:12:10.448Z",
+  "updatedAt": "2026-06-02T05:28:51.954Z",
   "seenSlugs": [
+    "trade-everything-how-variational-is-bringing-100-tradfi-markets-onchain",
     "ekiden-founder-vitali-dervoed-onchain-derivatives",
     "techwaves-pr-founder-institutional-defi-communication-problem",
     "pharos-launches-pacific-ocean-mainnet-as-rwa-sector-surges-past-25-usd-billion",
     "breaking-bank-pierre-person-mission-redistribute-stablecoin-revenue",
     "building-private-web-expert-perspectives-zk-fhe-mpc",
-    "bridging-the-gap-building-the-infrastructure-for-realfi",
+    "octra-bridge-the-rail-between-public-liquidity-and-encrypted-state",
     "sentora-prime-and-the-next-phase-of-rwa-vault-curation",
     "crypto-is-splitting-into-two-parallel-universes",
     "slowfi-thesis-bitcoin-friction-power-next-defi-summer",
@@ -24,7 +25,6 @@
     "leo-fan-cysic-mainnet-cyclaw-ai-agents-disagrees-charles-hoskinson",
     "oneasset-cio-fixing-real-estate-liquidity-avoiding-toxic-assets",
     "world-foundation-research-engineer-on-agentic-coding-and-proof-of-human",
-    "coinfello-coo-on-building-the-execution-layer-for-autonomous-onchain-gents",
     "tokenized-equities-approach-1b-mark-as-institutional-rails-emerge",
     "defi-platforms-return-lazarus-swap-fees",
     "permissioned-defi-bridging-traditional-finance-and-decentralised-systems",
@@ -62,6 +62,7 @@
     "new-logic-liquidity-why-curation-is-the-next-infrastructure-layer",
     "europes-biggest-ethereum-conference-returns-to-cannes-with-emphasis-on-institutional-participation",
     "hsc-asset-management-conference-comes-to-hong-kong-connecting-capital-founders-and-global-finance",
+    "bridging-the-gap-building-the-infrastructure-for-realfi",
     "opinion-defi-vaults-need-to-grow-up-heres-how",
     "iyield-report-the-ultimate-financial-planning-tool-crypto-natives",
     "the-return-of-uncollateralised-lending-in-crypto-a-sector-of-risk-and-reward",
@@ -75,7 +76,6 @@
     "report-plasma-redefining-stablecoin-settlement",
     "report-from-idle-gpus-to-global-infrastructure-shaga-model",
     "kpk-report-owning-or-renting-liquidit-incentives-pol-sustainable-models",
-    "report-solv-protocol-the-onchain-bitcoin-reserve",
-    "katana-head-of-institutional-bd-why-general-purpose-chains-break-scale"
+    "report-solv-protocol-the-onchain-bitcoin-reserve"
   ]
 }
