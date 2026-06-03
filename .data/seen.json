@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-06-02T05:28:51.954Z",
+  "updatedAt": "2026-06-03T06:01:57.255Z",
   "seenSlugs": [
+    "beyond-storage-how-trust-wallet-s-new-ceo-is-redefining-the-wallet-around-trading",
     "trade-everything-how-variational-is-bringing-100-tradfi-markets-onchain",
     "ekiden-founder-vitali-dervoed-onchain-derivatives",
     "techwaves-pr-founder-institutional-defi-communication-problem",
     "pharos-launches-pacific-ocean-mainnet-as-rwa-sector-surges-past-25-usd-billion",
     "breaking-bank-pierre-person-mission-redistribute-stablecoin-revenue",
-    "building-private-web-expert-perspectives-zk-fhe-mpc",
     "octra-bridge-the-rail-between-public-liquidity-and-encrypted-state",
     "sentora-prime-and-the-next-phase-of-rwa-vault-curation",
     "crypto-is-splitting-into-two-parallel-universes",
@@ -24,7 +24,6 @@
     "humantech-co-founder-on-solving-the-sybil-crisis-and-keeping-humans-in-the-loop",
     "leo-fan-cysic-mainnet-cyclaw-ai-agents-disagrees-charles-hoskinson",
     "oneasset-cio-fixing-real-estate-liquidity-avoiding-toxic-assets",
-    "world-foundation-research-engineer-on-agentic-coding-and-proof-of-human",
     "tokenized-equities-approach-1b-mark-as-institutional-rails-emerge",
     "defi-platforms-return-lazarus-swap-fees",
     "permissioned-defi-bridging-traditional-finance-and-decentralised-systems",
@@ -63,7 +62,9 @@
     "europes-biggest-ethereum-conference-returns-to-cannes-with-emphasis-on-institutional-participation",
     "hsc-asset-management-conference-comes-to-hong-kong-connecting-capital-founders-and-global-finance",
     "bridging-the-gap-building-the-infrastructure-for-realfi",
+    "building-private-web-expert-perspectives-zk-fhe-mpc",
     "opinion-defi-vaults-need-to-grow-up-heres-how",
+    "world-foundation-research-engineer-on-agentic-coding-and-proof-of-human",
     "iyield-report-the-ultimate-financial-planning-tool-crypto-natives",
     "the-return-of-uncollateralised-lending-in-crypto-a-sector-of-risk-and-reward",
     "report-state-of-digital-assets-in-europe",
@@ -74,8 +75,6 @@
     "yieldbasis-the-future-bitcoin-yield-report",
     "redstone-the-fastest-growing-blockchain-oracle-report",
     "report-plasma-redefining-stablecoin-settlement",
-    "report-from-idle-gpus-to-global-infrastructure-shaga-model",
-    "kpk-report-owning-or-renting-liquidit-incentives-pol-sustainable-models",
-    "report-solv-protocol-the-onchain-bitcoin-reserve"
+    "report-from-idle-gpus-to-global-infrastructure-shaga-model"
   ]
 }
