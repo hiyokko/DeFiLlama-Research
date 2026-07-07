@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-03T04:40:02.709Z",
+  "updatedAt": "2026-07-07T04:50:08.932Z",
   "seenSlugs": [
     "redstone-today-a-tokenizethis-interview-with-marcin-kazmierczak",
     "llamaai-llm-for-crypto-and-tradfi",
@@ -7,9 +7,10 @@
     "investor-relations-dashboard-bespoke-defillama-vetted-data",
     "how-starknet-is-reimagining-privacy-with-strk20",
     "one-trillion-tok-edge-token-model-unlocks-institutional-defi",
+    "stocks-onchain-how-binance-stocks-and-bstocks-cover-the-full-equities-spectrum",
+    "the-ai-discovery-layer-how-llms-are-shaping-the-crypto-exchange-visibility",
     "llamapay-payroll-for-the-onchain-economy",
     "how-boxfun-is-turning-meme-coins-into-collectibles",
-    "octra-bridge-the-rail-between-public-liquidity-and-encrypted-state",
     "beyond-storage-how-trust-wallet-s-new-ceo-is-redefining-the-wallet-around-trading",
     "trade-everything-how-variational-is-bringing-100-tradfi-markets-onchain",
     "techwaves-pr-founder-institutional-defi-communication-problem",
@@ -31,7 +32,7 @@
     "building-ai-ready-web3-stack-compute-data-intelligence",
     "why-crypto-market-makers-could-face-charges-over-price-manipulation-tactics",
     "how-suis-retail-first-ecosystem-propelled-momentum-1b-volume",
-    "variational-and-the-shift-to-onchain-brokerage",
+    "boardwalk-closing-the-gap-between-token-launches-token-economies",
     "an-analysis-of-the-role-of-vote-buying-in-dao-governance-report",
     "analyst-notes-insights-after-dencun-report",
     "keyrock-a-new-playbook-for-realising-crypto-treasury-opportunity-report",
@@ -39,11 +40,10 @@
     "zeta-markets-perpetual-growth-report",
     "report-polkadot-is-levelling-up",
     "kontos-report-ai-powered-omnichain-infrastructure-pioneering-chain-abstraction",
+    "report-hemi-one-bitcoin-two-systems-and-the-link-between",
     "defi-yield-renaissance-report",
     "enso-report-defi-from-fragmented-to-functional",
-    "yo-report-solving-the-defi-yield-maze-rise-of-gen-3-optimizers",
-    "stocks-onchain-how-binance-stocks-and-bstocks-cover-the-full-equities-spectrum",
-    "the-ai-discovery-layer-how-llms-are-shaping-the-crypto-exchange-visibility",
+    "octra-bridge-the-rail-between-public-liquidity-and-encrypted-state",
     "sentora-prime-and-the-next-phase-of-rwa-vault-curation",
     "pharos-launches-pacific-ocean-mainnet-as-rwa-sector-surges-past-25-usd-billion",
     "octra-the-fully-homomorphic-encryption-breakthrough",
@@ -70,12 +70,12 @@
     "leo-fan-cysic-mainnet-cyclaw-ai-agents-disagrees-charles-hoskinson",
     "oneasset-cio-fixing-real-estate-liquidity-avoiding-toxic-assets",
     "world-foundation-research-engineer-on-agentic-coding-and-proof-of-human",
+    "yo-report-solving-the-defi-yield-maze-rise-of-gen-3-optimizers",
     "iyield-report-the-ultimate-financial-planning-tool-crypto-natives",
     "the-return-of-uncollateralised-lending-in-crypto-a-sector-of-risk-and-reward",
     "report-state-of-digital-assets-in-europe",
     "report-building-foundation-open-ai-economy-the-case-for-0g",
     "exponentialfi-report-evaluating-risk-in-defi",
-    "hemi-report-modular-l2-connecting-bitcoin-ethereum-ecosystems",
-    "defi-3q24-report"
+    "hemi-report-modular-l2-connecting-bitcoin-ethereum-ecosystems"
   ]
 }
