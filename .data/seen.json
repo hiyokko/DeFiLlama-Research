@@ -1,16 +1,17 @@
 {
-  "updatedAt": "2026-07-07T04:50:08.932Z",
+  "updatedAt": "2026-07-09T04:50:46.769Z",
   "seenSlugs": [
+    "africa-gateway-valr-exchange-financial-infrastructure",
     "redstone-today-a-tokenizethis-interview-with-marcin-kazmierczak",
     "llamaai-llm-for-crypto-and-tradfi",
     "the-casper-manifest-why-the-next-wave-of-crypto-adoption-needs-a-construction-plan",
     "investor-relations-dashboard-bespoke-defillama-vetted-data",
     "how-starknet-is-reimagining-privacy-with-strk20",
-    "one-trillion-tok-edge-token-model-unlocks-institutional-defi",
     "stocks-onchain-how-binance-stocks-and-bstocks-cover-the-full-equities-spectrum",
-    "the-ai-discovery-layer-how-llms-are-shaping-the-crypto-exchange-visibility",
     "llamapay-payroll-for-the-onchain-economy",
+    "the-ai-discovery-layer-how-llms-are-shaping-the-crypto-exchange-visibility",
     "how-boxfun-is-turning-meme-coins-into-collectibles",
+    "one-trillion-tok-edge-token-model-unlocks-institutional-defi",
     "beyond-storage-how-trust-wallet-s-new-ceo-is-redefining-the-wallet-around-trading",
     "trade-everything-how-variational-is-bringing-100-tradfi-markets-onchain",
     "techwaves-pr-founder-institutional-defi-communication-problem",
@@ -24,7 +25,6 @@
     "dollar120-trillion-unlock-why-programmable-compliance-final-frontier-onchain-institutional-capital",
     "space-and-time-cmo-agentic-finance-verifiable-data",
     "0g-labs-vp-making-decentralised-ai-public-good",
-    "deficom-ceo-unifying-crosschain-identity-solving-fragmented-wallets",
     "the-state-of-rwafi-q1-2026-report",
     "defi-platforms-return-lazarus-swap-fees",
     "permissioned-defi-bridging-traditional-finance-and-decentralised-systems",
@@ -66,6 +66,7 @@
     "bridging-the-gap-building-the-infrastructure-for-realfi",
     "building-private-web-expert-perspectives-zk-fhe-mpc",
     "opinion-defi-vaults-need-to-grow-up-heres-how",
+    "deficom-ceo-unifying-crosschain-identity-solving-fragmented-wallets",
     "humantech-co-founder-on-solving-the-sybil-crisis-and-keeping-humans-in-the-loop",
     "leo-fan-cysic-mainnet-cyclaw-ai-agents-disagrees-charles-hoskinson",
     "oneasset-cio-fixing-real-estate-liquidity-avoiding-toxic-assets",
@@ -75,7 +76,6 @@
     "the-return-of-uncollateralised-lending-in-crypto-a-sector-of-risk-and-reward",
     "report-state-of-digital-assets-in-europe",
     "report-building-foundation-open-ai-economy-the-case-for-0g",
-    "exponentialfi-report-evaluating-risk-in-defi",
-    "hemi-report-modular-l2-connecting-bitcoin-ethereum-ecosystems"
+    "exponentialfi-report-evaluating-risk-in-defi"
   ]
 }
