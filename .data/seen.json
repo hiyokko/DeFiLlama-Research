@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-08-21T02:21:40.604Z",
+  "updatedAt": "2026-08-26T02:23:00.121Z",
   "seenSlugs": [
+    "white-label-aave-deployment-the-risk-function-an-operator-cannot-rebuild-alone",
     "stocks-on-the-blockchain-do-they-have-product-market-fit",
     "inside-gate-reserve-position-diversified-comfortably-collateralized",
-    "hyperliquid-and-the-rwa-retention-question-what-the-data-shows",
     "crecimiento-argentines-financial-reality-and-the-impossible-dollar-access",
+    "hyperliquid-and-the-rwa-retention-question-what-the-data-shows",
     "bitget-tokenized-stocks-gain-traction-as-retail-demand-accelerates",
     "forgd-market-maker-leaderboard-now-live-on-defillama-offering-traders-new-source-of-alpha",
-    "bstocks-after-hours-who-is-capturing-liquidity-when-markets-close",
     "t-0-plus-zero-coinsph-ceo-wei-zhou-speed-money",
     "quai-network-cofounder-proof-of-work-economy-launch-quainance",
     "africa-gateway-valr-exchange-financial-infrastructure",
@@ -42,6 +42,7 @@
     "zircuit-report-l2-with-ai-enabled-security",
     "zeta-markets-perpetual-growth-report",
     "report-polkadot-is-levelling-up",
+    "bstocks-after-hours-who-is-capturing-liquidity-when-markets-close",
     "hylo-xsol-no-liquidation-no-funding-but-what-are-the-real-costs",
     "hyperliquid-and-the-rwa-onboarding-question-what-the-data-shows",
     "llama-swap-dex-aggregator-puts-safety-first",
@@ -61,7 +62,6 @@
     "onchain-real-estate-technically-mature-institutionally-constrained",
     "regulation-is-the-real-bottleneck-in-rwafi",
     "a-closer-look-at-tokenised-private-credit",
-    "tokenised-commodities-real-assets-rebuilt-onchain",
     "bridging-the-gap-building-the-infrastructure-for-realfi",
     "building-private-web-expert-perspectives-zk-fhe-mpc",
     "opinion-defi-vaults-need-to-grow-up-heres-how",
@@ -72,10 +72,10 @@
     "leo-fan-cysic-mainnet-cyclaw-ai-agents-disagrees-charles-hoskinson",
     "oneasset-cio-fixing-real-estate-liquidity-avoiding-toxic-assets",
     "world-foundation-research-engineer-on-agentic-coding-and-proof-of-human",
+    "tokenised-commodities-real-assets-rebuilt-onchain",
     "tokenised-stocks-whats-really-under-the-hood",
     "kontos-report-ai-powered-omnichain-infrastructure-pioneering-chain-abstraction",
     "report-hemi-one-bitcoin-two-systems-and-the-link-between",
-    "defi-yield-renaissance-report",
-    "enso-report-defi-from-fragmented-to-functional"
+    "defi-yield-renaissance-report"
   ]
 }
