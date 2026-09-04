@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-09-03T05:27:39.268Z",
+  "updatedAt": "2026-09-04T05:28:16.687Z",
   "seenSlugs": [
+    "are-prediction-markets-still-hot",
     "cexs-shut-down-defi-deserves-revisit-case-thorchain",
     "bought-not-levered-what-actually-drove-bitcoin-s-august-rally",
-    "rise-hip3-pre-ipo-markets-how-price",
-    "bitget-stocks-bridging-traditional-equities-and-onchain-markets",
-    "infrastructure-behind-stellar-rwa-boom",
     "rating-keep-earning-forgd-defillama-universal-token-ratings",
-    "white-label-aave-deployment-the-risk-function-an-operator-cannot-rebuild-alone",
+    "inside-gate-reserve-position-diversified-comfortably-collateralized",
+    "rise-hip3-pre-ipo-markets-how-price",
+    "infrastructure-behind-stellar-rwa-boom",
     "t-0-plus-zero-coinsph-ceo-wei-zhou-speed-money",
     "quai-network-cofounder-proof-of-work-economy-launch-quainance",
     "africa-gateway-valr-exchange-financial-infrastructure",
@@ -42,6 +42,7 @@
     "report-katana-flywheel-rethinking-incentives-liquidity-for-sustainability",
     "kpk-report-owning-or-renting-liquidit-incentives-pol-sustainable-models",
     "yo-report-solving-the-defi-yield-maze-rise-of-gen-3-optimizers",
+    "white-label-aave-deployment-the-risk-function-an-operator-cannot-rebuild-alone",
     "stocks-on-the-blockchain-do-they-have-product-market-fit",
     "hyperliquid-and-the-rwa-retention-question-what-the-data-shows",
     "bitget-tokenized-stocks-gain-traction-as-retail-demand-accelerates",
@@ -60,8 +61,8 @@
     "how-starknet-is-reimagining-privacy-with-strk20",
     "the-ai-discovery-layer-how-llms-are-shaping-the-crypto-exchange-visibility",
     "sentora-prime-and-the-next-phase-of-rwa-vault-curation",
-    "pharos-launches-pacific-ocean-mainnet-as-rwa-sector-surges-past-25-usd-billion",
     "bridging-the-gap-building-the-infrastructure-for-realfi",
+    "pharos-launches-pacific-ocean-mainnet-as-rwa-sector-surges-past-25-usd-billion",
     "building-private-web-expert-perspectives-zk-fhe-mpc",
     "opinion-defi-vaults-need-to-grow-up-heres-how",
     "octra-the-fully-homomorphic-encryption-breakthrough",
@@ -74,7 +75,6 @@
     "oneasset-cio-fixing-real-estate-liquidity-avoiding-toxic-assets",
     "world-foundation-research-engineer-on-agentic-coding-and-proof-of-human",
     "onchain-real-estate-technically-mature-institutionally-constrained",
-    "regulation-is-the-real-bottleneck-in-rwafi",
-    "a-closer-look-at-tokenised-private-credit"
+    "regulation-is-the-real-bottleneck-in-rwafi"
   ]
 }
