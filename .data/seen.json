@@ -1,10 +1,11 @@
 {
-  "updatedAt": "2026-10-01T06:48:24.237Z",
+  "updatedAt": "2026-10-02T06:39:44.012Z",
   "seenSlugs": [
+    "forgd-ratings-in-motion",
     "defi-hacks-could-ai-reproduce-today",
     "kalshi-fake-volume-hides-real-fee-engine",
-    "forgd-ratings-in-motion",
     "zama-a-look-into-confidential-defi",
+    "sandwich-attacks-private-routing-thorchain-does-differently",
     "sentora-brings-huma-payment-credit-morpho-new-pst-vault",
     "morpho-trades-above-aave-zero-revenue-rational-bet-growth",
     "one-a-tier-decentralized-exchange",
@@ -74,7 +75,6 @@
     "octra-bridge-the-rail-between-public-liquidity-and-encrypted-state",
     "how-starknet-is-reimagining-privacy-with-strk20",
     "the-ai-discovery-layer-how-llms-are-shaping-the-crypto-exchange-visibility",
-    "sentora-prime-and-the-next-phase-of-rwa-vault-curation",
-    "bridging-the-gap-building-the-infrastructure-for-realfi"
+    "sentora-prime-and-the-next-phase-of-rwa-vault-curation"
   ]
 }
