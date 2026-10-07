@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-10-02T06:39:44.012Z",
+  "updatedAt": "2026-10-07T06:49:47.732Z",
   "seenSlugs": [
+    "card-compare-dashboard-tracks-crypto-cards-cashback-fees",
     "forgd-ratings-in-motion",
     "defi-hacks-could-ai-reproduce-today",
-    "kalshi-fake-volume-hides-real-fee-engine",
     "zama-a-look-into-confidential-defi",
     "sandwich-attacks-private-routing-thorchain-does-differently",
     "sentora-brings-huma-payment-credit-morpho-new-pst-vault",
@@ -43,6 +43,7 @@
     "report-building-foundation-open-ai-economy-the-case-for-0g",
     "report-katana-flywheel-rethinking-incentives-liquidity-for-sustainability",
     "kpk-report-owning-or-renting-liquidit-incentives-pol-sustainable-models",
+    "kalshi-fake-volume-hides-real-fee-engine",
     "motoswap-playbook-liquidity-trading-activity",
     "anatomy-highly-rated-token-forgd",
     "deep-enough-trade-gate-case-tokens-stocks",
@@ -74,7 +75,6 @@
     "how-boxfun-is-turning-meme-coins-into-collectibles",
     "octra-bridge-the-rail-between-public-liquidity-and-encrypted-state",
     "how-starknet-is-reimagining-privacy-with-strk20",
-    "the-ai-discovery-layer-how-llms-are-shaping-the-crypto-exchange-visibility",
-    "sentora-prime-and-the-next-phase-of-rwa-vault-curation"
+    "the-ai-discovery-layer-how-llms-are-shaping-the-crypto-exchange-visibility"
   ]
 }
