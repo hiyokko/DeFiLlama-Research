@@ -1,15 +1,14 @@
 {
-  "updatedAt": "2026-10-07T06:49:47.732Z",
+  "updatedAt": "2026-10-09T07:06:55.956Z",
   "seenSlugs": [
-    "card-compare-dashboard-tracks-crypto-cards-cashback-fees",
-    "forgd-ratings-in-motion",
-    "defi-hacks-could-ai-reproduce-today",
     "zama-a-look-into-confidential-defi",
+    "forgd-ratings-in-motion",
+    "card-compare-dashboard-tracks-crypto-cards-cashback-fees",
     "sandwich-attacks-private-routing-thorchain-does-differently",
-    "sentora-brings-huma-payment-credit-morpho-new-pst-vault",
-    "morpho-trades-above-aave-zero-revenue-rational-bet-growth",
+    "ethena-expansion-playbook-payment-basis-trading-wallstreet-ena-bet",
+    "defi-hacks-could-ai-reproduce-today",
+    "kalshi-fake-volume-hides-real-fee-engine",
     "one-a-tier-decentralized-exchange",
-    "variational-swaps",
     "why-nexo-is-betting-on-argentina-to-lead-its-latam-expansion",
     "market-never-close-binance-shunyet-jan",
     "t-0-plus-zero-coinsph-ceo-wei-zhou-speed-money",
@@ -43,11 +42,13 @@
     "report-building-foundation-open-ai-economy-the-case-for-0g",
     "report-katana-flywheel-rethinking-incentives-liquidity-for-sustainability",
     "kpk-report-owning-or-renting-liquidit-incentives-pol-sustainable-models",
-    "kalshi-fake-volume-hides-real-fee-engine",
     "motoswap-playbook-liquidity-trading-activity",
     "anatomy-highly-rated-token-forgd",
+    "morpho-trades-above-aave-zero-revenue-rational-bet-growth",
     "deep-enough-trade-gate-case-tokens-stocks",
+    "sentora-brings-huma-payment-credit-morpho-new-pst-vault",
     "confidential-onchain-yield-missing-infrastructure-institutional-capital",
+    "variational-swaps",
     "universal-token-ratings-the-disclosure-performance-gap",
     "forgd-universal-token-ratings-first-100-scores-reveal",
     "flare-tokenomics-revamp-transition-activity-linked-economics",
@@ -74,7 +75,6 @@
     "llamapay-payroll-for-the-onchain-economy",
     "how-boxfun-is-turning-meme-coins-into-collectibles",
     "octra-bridge-the-rail-between-public-liquidity-and-encrypted-state",
-    "how-starknet-is-reimagining-privacy-with-strk20",
-    "the-ai-discovery-layer-how-llms-are-shaping-the-crypto-exchange-visibility"
+    "how-starknet-is-reimagining-privacy-with-strk20"
   ]
 }
