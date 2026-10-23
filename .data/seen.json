@@ -1,14 +1,15 @@
 {
-  "updatedAt": "2026-10-22T05:44:33.476Z",
+  "updatedAt": "2026-10-23T05:42:56.781Z",
   "seenSlugs": [
-    "decentralization-permissionlessness-neutrality-censorship-resistance-defi",
-    "forgd-ratings-in-motion",
     "card-compare-dashboard-tracks-crypto-cards-cashback-fees",
+    "decentralization-permissionlessness-neutrality-censorship-resistance-defi",
+    "gate-money-crypto-exchange-all-in-one-financial-account",
     "how-flare-uses-data-to-expand-what-capital-can-do",
+    "kalshi-trades-moving-edges-price-curve",
     "ethena-expansion-playbook-payment-basis-trading-wallstreet-ena-bet",
     "sandwich-attacks-private-routing-thorchain-does-differently",
     "defi-hacks-could-ai-reproduce-today",
-    "kalshi-fake-volume-hides-real-fee-engine",
+    "forgd-ratings-in-motion",
     "one-a-tier-decentralized-exchange",
     "why-nexo-is-betting-on-argentina-to-lead-its-latam-expansion",
     "market-never-close-binance-shunyet-jan",
@@ -43,6 +44,7 @@
     "report-hemi-one-bitcoin-two-systems-and-the-link-between",
     "report-building-foundation-open-ai-economy-the-case-for-0g",
     "report-katana-flywheel-rethinking-incentives-liquidity-for-sustainability",
+    "kalshi-fake-volume-hides-real-fee-engine",
     "motoswap-playbook-liquidity-trading-activity",
     "anatomy-highly-rated-token-forgd",
     "morpho-trades-above-aave-zero-revenue-rational-bet-growth",
@@ -73,8 +75,6 @@
     "llamaai-llm-for-crypto-and-tradfi",
     "stocks-onchain-how-binance-stocks-and-bstocks-cover-the-full-equities-spectrum",
     "investor-relations-dashboard-bespoke-defillama-vetted-data",
-    "llamapay-payroll-for-the-onchain-economy",
-    "how-boxfun-is-turning-meme-coins-into-collectibles",
-    "octra-bridge-the-rail-between-public-liquidity-and-encrypted-state"
+    "llamapay-payroll-for-the-onchain-economy"
   ]
 }
